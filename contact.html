@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact MediaLens - Get in Touch</title>
+    <meta name="description" content="Contact the MediaLens team with questions, feedback, or suggestions for new features.">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/video.png">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-play-circle me-2"></i>
+                <span class="fw-bold">MediaLens</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+                            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="terms.html">Terms</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <div class="row align-items-center min-vh-60">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-5 fw-bold mb-4">Get in Touch</h1>
+                    <p class="lead mb-4">We'd love to hear from you. Whether you have feedback, questions, or ideas for improving MediaLens, we're all ears.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="row g-5">
+                        <!-- Contact Form -->
+                        <div class="col-lg-7">
+                            <div class="card border-0 shadow-sm h-100">
+                                <div class="card-body p-4 p-md-5">
+                                    <h2 class="h3 mb-4">Send us a message</h2>
+                                    <p class="text-muted mb-4">We typically respond within 1-2 business days.</p>
+                                    
+                                    <form id="contactForm">
+                                        <div class="row g-3">
+                                            <div class="col-md-6">
+                                                <label for="name" class="form-label">Your Name</label>
+                                                <input type="text" class="form-control" id="name" required>
+                                                <div class="invalid-feedback">
+                                                    Please provide your name.
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="email" class="form-label">Email Address</label>
+                                                <input type="email" class="form-control" id="email" required>
+                                                <div class="invalid-feedback">
+                                                    Please provide a valid email.
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="subject" class="form-label">Subject</label>
+                                                <select class="form-select" id="subject" required>
+                                                    <option value="" selected disabled>Select a topic</option>
+                                                    <option value="feedback">General Feedback</option>
+                                                    <option value="bug">Report a Bug</option>
+                                                    <option value="feature">Feature Request</option>
+                                                    <option value="platform">New Platform Suggestion</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                                <div class="invalid-feedback">
+                                                    Please select a subject.
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <label for="message" class="form-label">Your Message</label>
+                                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                                <div class="invalid-feedback">
+                                                    Please provide a message.
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="newsletter" checked>
+                                                    <label class="form-check-label small" for="newsletter">
+                                                        I'd like to receive occasional updates about MediaLens (no spam, unsubscribe anytime)
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary" id="submitBtn">
+                                                    <span class="submit-text">Send Message</span>
+                                                    <span class="spinner-border spinner-border-sm d-none" role="status"></span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                    <!-- Success Message (hidden by default) -->
+                                    <div class="alert alert-success mt-4 d-none" id="successMessage">
+                                        <i class="fas fa-check-circle me-2"></i>
+                                        <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you soon.
+                                    </div>
+                                    
+                                    <!-- Error Message (hidden by default) -->
+                                    <div class="alert alert-danger mt-4 d-none" id="errorMessage">
+                                        <i class="fas fa-exclamation-triangle me-2"></i>
+                                        <span id="errorMessageText">There was an error sending your message. Please try again.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Contact Info & FAQ -->
+                        <div class="col-lg-5">
+                            <!-- Contact Information -->
+                            <div class="card border-0 shadow-sm mb-4">
+                                <div class="card-body p-4">
+                                    <h3 class="h5 mb-4">Other Ways to Reach Us</h3>
+                                    
+                                    <div class="d-flex mb-3">
+                                        <div class="icon-wrapper-small me-3">
+                                            <i class="fa-regular fa-envelope text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-1">Email</h4>
+                                            <p class="small text-muted mb-0">high.dee.dev@gmail.com</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex mb-3">
+                                        <div class="icon-wrapper-small me-3">
+                                            <i class="fa-brands fa-whatsapp text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-1">WhatsApp</h4>
+                                            <p class="small text-muted mb-0">+234 901 168 6965</p>
+                                            <p class="small text-muted">Report issues, contribute, or promote your brand</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="d-flex">
+                                        <div class="icon-wrapper-small me-3">
+                                            <i class="fas fa-globe text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="h6 mb-1">Social Media</h4>
+                                            <p class="small text-muted mb-0">Follow us for updates</p>
+                                            <div class="d-flex gap-2 mt-2 justify-content-around">
+                                                <a href="https://x.com/HighDeeDev" target="_blank">
+                                                    <i class="fa-brands fa-x-twitter"></i>
+                                                </a>
+                                                <a href="https://www.tiktok.com/@high_dee_digital_palace" target="_blank">
+                                                    <i class="fa-brands fa-tiktok"></i>
+                                                </a>
+                                                <a href="https://www.facebook.com/share/1PzoCXyj9z/" target="_blank">
+                                                    <i class="fa-brands fa-facebook-f"></i>
+                                                </a>
+                                                <a href="https://www.linkedin.com/in/high-dee-025332309" target="_blank">
+                                                    <i class="fa-brands fa-linkedin-in"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- FAQ -->
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <h3 class="h5 mb-4">Frequently Asked Questions</h3>
+                                    
+                                    <div class="accordion" id="faqAccordion">
+                                        <div class="accordion-item border-0">
+                                            <h4 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                                    Can I preview private content?
+                                                </button>
+                                            </h4>
+                                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                                <div class="accordion-body small">
+                                                    No. MediaLens can only preview publicly available content. We respect platform privacy settings and cannot bypass restrictions.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="accordion-item border-0">
+                                            <h4 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                                    Do you store the links I paste?
+                                                </button>
+                                            </h4>
+                                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                                <div class="accordion-body small">
+                                                    No. MediaLens operates entirely in your browser. Links are processed locally and never sent to our servers or stored anywhere.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="accordion-item border-0">
+                                            <h4 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                                    Can I suggest a new platform?
+                                                </button>
+                                            </h4>
+                                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                                <div class="accordion-body small">
+                                                    Absolutely! We're always looking to expand our platform support. Use the contact form to suggest new platforms - just select "New Platform Suggestion" as the subject.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="accordion-item border-0">
+                                            <h4 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                                    Is MediaLens free?
+                                                </button>
+                                            </h4>
+                                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                                <div class="accordion-body small">
+                                                    Yes, MediaLens is completely free to use. We believe in providing useful tools without barriers. There are no plans to introduce fees for the core preview functionality.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mt-4 pt-3 border-top">
+                                        <p class="small text-muted mb-0">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            For technical issues, please include the platform and link that's not working.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Platform Status -->
+                    <div class="card border-0 shadow-sm mt-5">
+                        <div class="card-body p-4 p-md-5">
+                            <h3 class="h5 mb-4">Platform Status</h3>
+                            <p class="text-muted mb-4">Current status of our platform integrations:</p>
+                            
+                            <div class="row g-3">
+                                <div class="col-md-4 col-lg-2">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="fab fa-youtube fa-2x text-danger mb-2"></i>
+                                        <h4 class="h6 mb-1">YouTube</h4>
+                                        <span class="badge bg-success">Operational</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-2">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="fab fa-instagram fa-2x text-purple mb-2"></i>
+                                        <h4 class="h6 mb-1">Instagram</h4>
+                                        <span class="badge bg-success">Operational</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-2">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="fab fa-facebook fa-2x text-primary mb-2"></i>
+                                        <h4 class="h6 mb-1">Facebook</h4>
+                                        <span class="badge bg-warning">Limited</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-2">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="fab fa-tiktok fa-2x text-dark mb-2"></i>
+                                        <h4 class="h6 mb-1">TikTok</h4>
+                                        <span class="badge bg-success">Operational</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-2">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="fas fa-music fa-2x text-success mb-2"></i>
+                                        <h4 class="h6 mb-1">Audiomack</h4>
+                                        <span class="badge bg-success">Operational</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-2">
+                                    <div class="text-center p-3 border rounded">
+                                        <i class="fas fa-plus fa-2x text-muted mb-2"></i>
+                                        <h4 class="h6 mb-1">More Soon</h4>
+                                        <span class="badge bg-secondary">Coming</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-4 p-3 bg-light rounded">
+                                <p class="small mb-0">
+                                    <i class="fas fa-sync-alt me-2"></i>
+                                    <strong>Note:</strong> Platform status can change due to API updates or restrictions. Facebook has limited embed support for some content types.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <a class="navbar-brand" href="index.html">
+                        <i class="fas fa-play-circle me-2"></i>
+                        <span class="fw-bold">MediaLens</span>
+                    </a>
+                    <p class="mt-3 small text-light">A beautiful way to preview social media content across platforms.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="about.html">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="terms.html">Terms</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-lg-end">
+                        <p class="small text-light">&copy; <span id="currentYear"></span> MediaLens. All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="contactToast" class="toast" role="alert">
+            <div class="toast-header bg-primary text-white">
+                <i class="fas fa-paper-plane me-2"></i>
+                <strong class="me-auto">Message Sent</strong>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
+            </div>
+            <div class="toast-body">
+                Thank you for contacting us! We'll get back to you soon.
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom JS -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Contact form handling
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const submitText = submitBtn.querySelector('.submit-text');
+        const submitSpinner = submitBtn.querySelector('.spinner-border');
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const errorMessageText = document.getElementById('errorMessageText');
+        const contactToast = new bootstrap.Toast(document.getElementById('contactToast'));
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate form
+                if (!this.checkValidity()) {
+                    e.stopPropagation();
+                    this.classList.add('was-validated');
+                    return;
+                }
+                
+                // Show loading state
+                submitText.textContent = 'Sending...';
+                submitSpinner.classList.remove('d-none');
+                submitBtn.disabled = true;
+                
+                // Simulate form submission (in a real app, this would be an actual API call)
+                setTimeout(() => {
+                    // Hide loading state
+                    submitText.textContent = 'Send Message';
+                    submitSpinner.classList.add('d-none');
+                    submitBtn.disabled = false;
+                    
+                    // Show success message
+                    successMessage.classList.remove('d-none');
+                    errorMessage.classList.add('d-none');
+                    
+                    // Show toast notification
+                    contactToast.show();
+                    
+                    // Reset form
+                    this.reset();
+                    this.classList.remove('was-validated');
+                    
+                    // Scroll to success message
+                    successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html>

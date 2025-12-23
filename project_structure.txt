@@ -1,0 +1,19 @@
+MediaLens/
+│
+├── index.html
+├── about.html
+├── terms.html
+├── contact.html
+│
+├── css/
+│   ├── style.css
+│   └── bootstrap.min.css
+│
+├── js/
+│   ├── main.js
+│   └── bootstrap.bundle.min.js
+│
+├── assets/
+│   └── (empty - for future use)
+│
+└── README.md
