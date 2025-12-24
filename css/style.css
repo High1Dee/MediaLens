@@ -79,10 +79,12 @@ h1, h2, h3, h4, h5, h6 {
 .navbar {
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(50px);
+    padding: 0;
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
     box-shadow: var(--shadow-sm);
     transition: all var(--transition);
+    margin: 0;
 }
 
 .navbar-brand {
@@ -151,6 +153,7 @@ div.justify-content-around a{
     background-color: var(--primary-color);
     color: var(--light-color);
     border-radius: 50%;
+    border: 2px solid var(--primary-color);
     transition: all .5s ease-in-out;
 }
 
