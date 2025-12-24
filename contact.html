@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://kit.fontawesome.com/8140dd2669.js" crossorigin="anonymous"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css">
     
@@ -69,56 +69,62 @@
                             <div class="card border-0 shadow-sm h-100">
                                 <div class="card-body p-4 p-md-5">
                                     <h2 class="h3 mb-4">Send us a message</h2>
-                                    <p class="text-muted mb-4">We typically respond within 1-2 business days.</p>
+                                    <p class="text-muted mb-4">Fill out the form below and we'll get back to you as soon as possible.</p>
                                     
-                                    <form id="contactForm">
+                                    <form id="contactForm" onsubmit="return handleFormSubmit(event)">
                                         <div class="row g-3">
                                             <div class="col-md-6">
-                                                <label for="name" class="form-label">Your Name</label>
-                                                <input type="text" class="form-control" id="name" required>
+                                                <label for="name" class="form-label">Your Name *</label>
+                                                <input type="text" class="form-control" id="name" name="name" required>
                                                 <div class="invalid-feedback">
                                                     Please provide your name.
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <label for="email" class="form-label">Email Address</label>
-                                                <input type="email" class="form-control" id="email" required>
+                                                <label for="email" class="form-label">Email Address *</label>
+                                                <input type="email" class="form-control" id="email" name="email" required>
                                                 <div class="invalid-feedback">
                                                     Please provide a valid email.
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label for="subject" class="form-label">Subject</label>
-                                                <select class="form-select" id="subject" required>
+                                                <label for="subject" class="form-label">Subject *</label>
+                                                <select class="form-select" id="subject" name="subject" required>
                                                     <option value="" selected disabled>Select a topic</option>
-                                                    <option value="feedback">General Feedback</option>
-                                                    <option value="bug">Report a Bug</option>
-                                                    <option value="feature">Feature Request</option>
-                                                    <option value="platform">New Platform Suggestion</option>
-                                                    <option value="other">Other</option>
+                                                    <option value="General Feedback">General Feedback</option>
+                                                    <option value="Report a Bug">Report a Bug</option>
+                                                    <option value="Feature Request">Feature Request</option>
+                                                    <option value="New Platform Suggestion">New Platform Suggestion</option>
+                                                    <option value="Business Inquiry">Business Inquiry</option>
+                                                    <option value="Other">Other</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     Please select a subject.
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <label for="message" class="form-label">Your Message</label>
-                                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                                <label for="message" class="form-label">Your Message *</label>
+                                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                                                 <div class="invalid-feedback">
                                                     Please provide a message.
                                                 </div>
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="newsletter" checked>
+                                                    <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" checked>
                                                     <label class="form-check-label small" for="newsletter">
                                                         I'd like to receive occasional updates about MediaLens (no spam, unsubscribe anytime)
                                                     </label>
                                                 </div>
                                             </div>
                                             <div class="col-12">
+                                                <p class="small text-muted mb-3">
+                                                    <i class="fas fa-info-circle me-1"></i>
+                                                    This form will open your email client to send the message.
+                                                </p>
                                                 <button type="submit" class="btn btn-primary" id="submitBtn">
-                                                    <span class="submit-text">Send Message</span>
+                                                    <i class="fas fa-paper-plane me-2"></i>
+                                                    <span class="submit-text">Send Message via Email</span>
                                                     <span class="spinner-border spinner-border-sm d-none" role="status"></span>
                                                 </button>
                                             </div>
@@ -128,13 +134,25 @@
                                     <!-- Success Message (hidden by default) -->
                                     <div class="alert alert-success mt-4 d-none" id="successMessage">
                                         <i class="fas fa-check-circle me-2"></i>
-                                        <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you soon.
+                                        <strong>Ready to send!</strong> Your email client should open with a pre-filled message. If it doesn't open automatically, please check your email settings.
                                     </div>
                                     
                                     <!-- Error Message (hidden by default) -->
                                     <div class="alert alert-danger mt-4 d-none" id="errorMessage">
                                         <i class="fas fa-exclamation-triangle me-2"></i>
-                                        <span id="errorMessageText">There was an error sending your message. Please try again.</span>
+                                        <span id="errorMessageText">There was an error preparing your message. Please try again.</span>
+                                    </div>
+                                    
+                                    <!-- Alternative Contact Info -->
+                                    <div class="mt-4 pt-4 border-top">
+                                        <p class="small text-muted mb-2">
+                                            <i class="fas fa-envelope me-1"></i>
+                                            <strong>Direct Email:</strong> high.dee.dev@gmail.com
+                                        </p>
+                                        <p class="small text-muted mb-0">
+                                            <i class="fas fa-clock me-1"></i>
+                                            <strong>Response Time:</strong> We typically respond within 1-2 business days.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -183,7 +201,7 @@
                                                     <i class="fa-brands fa-tiktok"></i>
                                                 </a>
                                                 <a href="https://www.facebook.com/share/1PzoCXyj9z/" target="_blank">
-                                                    <i class="fa-brands fa-facebook-f"></i>
+                                                    <i class="fa-brands fa-facebook-f" style="padding-left: 2px; padding-right: 2px;"></i>
                                                 </a>
                                                 <a href="https://www.linkedin.com/in/high-dee-025332309" target="_blank">
                                                     <i class="fa-brands fa-linkedin-in"></i>
@@ -329,7 +347,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer py-5">
+    <footer class="footer py-5 m-0">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-4 mb-4 mb-lg-0">
@@ -364,20 +382,6 @@
         </div>
     </footer>
 
-    <!-- Toast Notifications -->
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="contactToast" class="toast" role="alert">
-            <div class="toast-header bg-primary text-white">
-                <i class="fas fa-paper-plane me-2"></i>
-                <strong class="me-auto">Message Sent</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"></button>
-            </div>
-            <div class="toast-body">
-                Thank you for contacting us! We'll get back to you soon.
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <!-- Custom JS -->
@@ -387,56 +391,153 @@
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
         
-        // Contact form handling
-        const contactForm = document.getElementById('contactForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const submitText = submitBtn.querySelector('.submit-text');
-        const submitSpinner = submitBtn.querySelector('.spinner-border');
-        const successMessage = document.getElementById('successMessage');
-        const errorMessage = document.getElementById('errorMessage');
-        const errorMessageText = document.getElementById('errorMessageText');
-        const contactToast = new bootstrap.Toast(document.getElementById('contactToast'));
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Validate form
-                if (!this.checkValidity()) {
-                    e.stopPropagation();
-                    this.classList.add('was-validated');
-                    return;
-                }
-                
-                // Show loading state
-                submitText.textContent = 'Sending...';
-                submitSpinner.classList.remove('d-none');
-                submitBtn.disabled = true;
-                
-                // Simulate form submission (in a real app, this would be an actual API call)
-                setTimeout(() => {
-                    // Hide loading state
-                    submitText.textContent = 'Send Message';
-                    submitSpinner.classList.add('d-none');
-                    submitBtn.disabled = false;
+        /**
+         * Handle contact form submission with mailto:
+         * Encodes form data and opens email client
+         */
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Get form elements
+            const form = event.target;
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value.trim();
+            const newsletter = document.getElementById('newsletter').checked;
+            
+            // Validate form
+            if (!name || !email || !subject || !message) {
+                // Show validation errors
+                form.classList.add('was-validated');
+                return false;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = submitBtn.querySelector('.submit-text');
+            const submitSpinner = submitBtn.querySelector('.spinner-border');
+            submitText.textContent = 'Preparing email...';
+            submitSpinner.classList.remove('d-none');
+            submitBtn.disabled = true;
+            
+            // Prepare email content
+            const emailTo = 'high.dee.dev@gmail.com'; // Change to your actual email
+            const emailSubject = `MediaLens Contact: ${subject}`;
+            
+            // Format email body
+            let emailBody = `Dear MediaLens Team,\n\n`;
+            emailBody += `I'm reaching out regarding: ${subject}\n\n`;
+            emailBody += `Here are my details:\n`;
+            emailBody += `Name: ${name}\n`;
+            emailBody += `Email: ${email}\n`;
+            emailBody += `Newsletter Opt-in: ${newsletter ? 'Yes' : 'No'}\n\n`;
+            emailBody += `My message:\n${message}\n\n`;
+            emailBody += `---\n`;
+            emailBody += `Sent via MediaLens Contact Form\n`;
+            emailBody += `Timestamp: ${new Date().toLocaleString()}`;
+            
+            // URL encode the content
+            const encodedSubject = encodeURIComponent(emailSubject);
+            const encodedBody = encodeURIComponent(emailBody);
+            
+            // Create mailto link
+            const mailtoLink = `mailto:${emailTo}?subject=${encodedSubject}&body=${encodedBody}`;
+            
+            // Try to open email client
+            setTimeout(() => {
+                try {
+                    // Open email client
+                    window.location.href = mailtoLink;
                     
                     // Show success message
+                    const successMessage = document.getElementById('successMessage');
+                    const errorMessage = document.getElementById('errorMessage');
+                    
                     successMessage.classList.remove('d-none');
                     errorMessage.classList.add('d-none');
                     
-                    // Show toast notification
-                    contactToast.show();
+                    // Reset button state
+                    submitText.textContent = 'Send Message via Email';
+                    submitSpinner.classList.add('d-none');
+                    submitBtn.disabled = false;
                     
-                    // Reset form
-                    this.reset();
-                    this.classList.remove('was-validated');
+                    // Optional: Reset form
+                    // form.reset();
+                    // form.classList.remove('was-validated');
                     
                     // Scroll to success message
                     successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     
-                }, 1500);
+                } catch (error) {
+                    console.error('Error opening email client:', error);
+                    
+                    // Show error message
+                    const errorMessage = document.getElementById('errorMessage');
+                    const errorMessageText = document.getElementById('errorMessageText');
+                    const successMessage = document.getElementById('successMessage');
+                    
+                    errorMessageText.textContent = 'Unable to open email client. Please send your message to high.dee.dev@gmail.com manually.';
+                    errorMessage.classList.remove('d-none');
+                    successMessage.classList.add('d-none');
+                    
+                    // Reset button state
+                    submitText.textContent = 'Send Message via Email';
+                    submitSpinner.classList.add('d-none');
+                    submitBtn.disabled = false;
+                    
+                    // Scroll to error message
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }, 500);
+            
+            return false; // Prevent default form submission
+        }
+        
+        /**
+         * Initialize form validation
+         */
+        function initializeFormValidation() {
+            const form = document.getElementById('contactForm');
+            if (!form) return;
+            
+            // Real-time validation
+            const inputs = form.querySelectorAll('input, select, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', () => {
+                    if (!input.checkValidity()) {
+                        input.classList.add('is-invalid');
+                    } else {
+                        input.classList.remove('is-invalid');
+                    }
+                });
+                
+                input.addEventListener('input', () => {
+                    if (input.checkValidity()) {
+                        input.classList.remove('is-invalid');
+                    }
+                });
+            });
+            
+            // Clear validation on form reset
+            form.addEventListener('reset', () => {
+                inputs.forEach(input => {
+                    input.classList.remove('is-invalid');
+                });
+                form.classList.remove('was-validated');
             });
         }
+        
+        // Initialize form validation when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeFormValidation();
+            
+            // Add example placeholder for message field
+            const messageField = document.getElementById('message');
+            if (messageField && !messageField.value) {
+                messageField.placeholder = 'Please describe your inquiry in detail. For bug reports, include:\n- Platform name\n- Example URLs\n- Browser and OS\n- Error messages if any';
+            }
+        });
     </script>
 </body>
 </html>
