@@ -267,7 +267,7 @@ div.justify-content-around a:hover{
 /* Embed Container */
 .embed-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 100%;
     height: 0;
     overflow: hidden;
     width: 100% !important;
@@ -475,7 +475,7 @@ div.justify-content-around a:hover{
 /* Embed Container Improvements */
 .embed-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    padding-bottom: 100%;
     height: 0;
     overflow: hidden;
     max-width: 100%;
@@ -560,7 +560,7 @@ div.justify-content-around a:hover{
 /* Responsive adjustments for embeds */
 @media (max-width: 768px) {
     .embed-container {
-        padding-bottom: 75%; /* Taller aspect ratio for mobile */
+        padding-bottom: 100%;
     }
     
     .metadata-item {
